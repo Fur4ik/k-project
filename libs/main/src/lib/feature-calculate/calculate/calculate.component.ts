@@ -27,11 +27,12 @@ export class CalculateComponent implements OnInit {
         const task = this.task()
         if (!task) return
 
-        this.parseValue()
-        this.initialValue(task.initial)
+        this.parseValue(task)
 
-        const x0 = this.initial()
-        const normalizeDiff = task.differential.replace(/x\s*\(\s*t\s*\)/g, 'x')
+        const x0 = this.initialValue(task.initial)!
+
+        const differential = this.parseDiff(task.differential)!
+        const normalizeDiff = differential.replace(/x\s*\(\s*t\s*\)/g, 'x')
 
         const math = create(all, {});
         const fExpr = math.parse(normalizeDiff);
@@ -76,27 +77,29 @@ export class CalculateComponent implements OnInit {
 
     initialValue(initial: string) {
         const parts = initial.split('=')
+        if (parts.length !== 2) {
+            this.initial.set(0)
+            return
+        }
+        initial = parts[1].toString()
+        if (initial.includes('/')) {
+            const [numerator, denominator] = initial.split('/').map(Number)
+            return denominator !== 0 ? numerator / denominator : 0
+        }
+        return Number(initial)
+    }
+
+    parseDiff(differential: string) {
+        const parts = differential.split('=')
 
         if (parts.length !== 2) {
             this.initial.set(0)
             return
         }
-
-        initial = parts[1].toString()
-
-        if (initial.includes('/')) {
-            const [numerator, denominator] = initial.split('/').map(Number)
-            this.initial.set(denominator !== 0 ? numerator / denominator : 0)
-            return
-        }
-
-        this.initial.set(Number(initial))
+        return parts[1].toString()
     }
 
-    parseValue() {
-        const task = this.task()
-        if (!task) return
-
+    parseValue(task: Task) {
         const [leftRaw, rightRaw] = task.section.slice(1, -1).split(',')
 
         const parseNumber = (value: string) => {
@@ -109,7 +112,6 @@ export class CalculateComponent implements OnInit {
 
         this.section.set([parseNumber(leftRaw.trim()), parseNumber(rightRaw.trim())])
     }
-
 
     calculateCoefficients(
         vn: (t: number) => number,
@@ -226,7 +228,6 @@ export class CalculateComponent implements OnInit {
             return value;
         }
     }
-
 }
 
 function integrate(

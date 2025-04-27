@@ -10,7 +10,21 @@
   gap: 20px;
 }
 
+.form__main{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
 .form__inputs{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: end;
+}
+
+.form__btn{
   display: flex;
   gap: 20px;
   align-items: center;

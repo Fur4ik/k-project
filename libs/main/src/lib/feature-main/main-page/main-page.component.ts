@@ -26,20 +26,17 @@ export class MainPageComponent {
         accuracy: new FormControl<number | null>(null, [Validators.required]),
     })
 
-
     constructor() {
         this.taskForm.valueChanges
             .pipe(takeUntilDestroyed())
             .subscribe(value => {
                 if (!value) return
-
                 const val: Task = {
                     differential: value.differential!,
                     initial: value.initial!,
                     section: value.section!,
                     accuracy: value.accuracy!,
                 }
-
                 this.task.set(val)
             })
     }
@@ -53,21 +50,20 @@ export class MainPageComponent {
         let example: Task
         if (toggle) {
             example = {
-                differential: 't+2x(t)^2',
+                differential: 'x(t)\'=t+2x(t)^2',
                 initial: 'x(0)=0',
                 section: '[0,1/2]',
                 accuracy: 0.1,
             }
         } else {
             example = {
-                differential: '2x(t)',
+                differential: 'x(t)\'=2x(t)',
                 initial: 'x(0)=1',
                 section: '[0,1/4]',
                 accuracy: 0.1,
             }
         }
         this.task.set(example);
-
         this.taskForm.patchValue({...example})
     }
 
