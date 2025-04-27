@@ -3,7 +3,7 @@
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "kp",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
@@ -17,6 +17,12 @@
         "polyfills": ["zone.js"],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "allowedCommonJsDependencies": [
+          "typed-function",
+          "seedrandom",
+          "javascript-natural-sort",
+          "escape-latex"
+        ],
         "assets": [
           {
             "glob": "**/*",

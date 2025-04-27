@@ -1,0 +1,29 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.tack-input{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form__inputs{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.light-btn{
+  height: min-content;
+  font-size: 16px;
+}
+
+.primary-btn {
+  display: flex;
+  align-items: center;
+  width: min-content;
+  padding: 10px 30px;
+}

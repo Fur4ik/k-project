@@ -1,1 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'margins';
+
+:root{
+  --light-color: #FFFFFF;
+  --light-gray-color: #F6F6F6;
+  --gray-color: #8C8C8C;
+  --primary-color: #FF7663;
+  --dark-color: #000000
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: noto sans, sans-serif;
+}
+
+
+.h1{
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+}
+
+.h2{
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.h3{
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.medium{
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.regular{
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+
+
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.light-btn{
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 8px;
+  border: var(--gray-color) 1px solid;
+  gap: 8px;
+  font-size: 20px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.primary-btn{
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  font-size: 20px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

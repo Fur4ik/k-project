@@ -1,0 +1,35 @@
+<h1 class="mb40">Решение задачи Коши методом Чаплыгина</h1>
+
+
+<h2 class="mb20">Введите параметры</h2>
+
+<form class="tack-input mb40" [formGroup]="taskForm">
+    <div class="form__inputs">
+        <kp-input formControlName="differential">
+            <span title>Задача Коши</span>
+            Пример: x(t)'=t+2x(t)^2
+        </kp-input>
+        <kp-input formControlName="initial">
+            <span title>Начальное условие</span>
+            Пример: x(0)=0
+        </kp-input>
+        <kp-input formControlName="section">
+            <span title>Отрезок</span>
+            Пример: [0,1/2]
+        </kp-input>
+        <kp-input formControlName="accuracy">
+            <span title>Степень точности</span>
+            Пример: 0.1
+        </kp-input>
+        <button (click)="onEnter(true)" class="light-btn">Ввести задачу №1</button>
+        <button (click)="onEnter(false)" class="light-btn">Ввести задачу №2</button>
+        <button (click)="onDelete()" class="light-btn">Очистить</button>
+    </div>
+    @if (!isProcess()) {
+        <button (click)="onProcess()" class="primary-btn">Решить</button>
+    }
+</form>
+
+@if (isProcess() && task(); as task) {
+    <kp-calculate [task]="task"></kp-calculate>
+}

@@ -1,0 +1,12 @@
+@if (isAccuracy()) {
+    <div class="answer mb20">
+        <span> Заданная точность была достигнута: {{ task().accuracy }} > {{ epsilon() }}</span>
+        <span> В качестве приближенного решения на отрезке: {{task().section}}, можно принять график функции x(t): </span>
+    </div>
+}
+
+<kp-chart-xt
+    [func]="this.xt()"
+    [t0]="section()[0]"
+    [t1]="section()[1]"
+/>

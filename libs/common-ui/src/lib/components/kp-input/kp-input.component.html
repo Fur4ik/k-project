@@ -1,0 +1,9 @@
+<label class="lv-label">
+
+  <ng-content select="[title]"/>
+  <input
+    class="lv-input"
+    [formControl]="innerInput"
+    [type]="type()">
+    <span class="example-text"><ng-content/></span>
+</label>
